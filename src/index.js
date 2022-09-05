@@ -12,15 +12,16 @@ class Game extends React.Component {
     super(props);
     this.state = {
       characters: [
-        {id: 1, name: 'Luke Skywalker'}, 
-        {id: 2, name: 'Obi-wan Kenobi'}, 
-        {id: 3, name: 'Grogu'}, 
-        {id: 4, name: 'Darth Vader'}
+        {_id: 1, name: 'Luke Skywalker'}, 
+        {_id: 2, name: 'Obi-wan Kenobi'}, 
+        {_id: 3, name: 'Grogu'}, 
+        {_id: 4, name: 'Darth Vader'}
       ],
       activeCharacter: null,
       homePageInfoVisibility: true,
       characterListVisibility: true,
-      characterSheetVisibility: false
+      characterSheetVisibility: false,
+      dataIsLoaded: false
     };
   }
 
@@ -35,6 +36,17 @@ class Game extends React.Component {
     this.setState({characterListVisibility: visibility});
     this.setState({homePageInfoVisibility: visibility});
     this.setState({characterSheetVisibility: !visibility});
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:3001/search/characters/all")
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({
+          characters: json,
+          dataIsLoaded: true
+        });
+      });
   }
 
   render() {
