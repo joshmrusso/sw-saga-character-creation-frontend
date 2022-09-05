@@ -2,10 +2,50 @@ import React from 'react';
 import Abilities from './Abilities.js';
 import Condition from './Condition.js';
 import Defenses from './Defenses.js';
+import SecondWind from './SecondWind.js';
+import HitPoints from './HitPoints.js';
+import DamageThreshold from './DamageThreshold.js';
+import CombatLists from './CombatLists.js';
 
 class CharacterSheet extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      combatInformation: [
+        {
+          id: 1,
+          infoTitle: "Initiative",
+          infoValue: 20
+        },
+        {
+          id: 2,
+          infoTitle: "Force Points",
+          infoValue: 20
+        },
+        {
+          id: 3,
+          infoTitle: "Base Attack",
+          infoValue: 20
+        }
+      ],
+      attackInformation: [
+        {
+          id: 1,
+          infoTitle: "Speed",
+          infoValue: 20
+        },
+        {
+          id: 2,
+          infoTitle: "Perception",
+          infoValue: 20
+        },
+        {
+          id: 3,
+          infoTitle: "Destiny Points",
+          infoValue: 20
+        }
+      ]
+    };
   }
 
   render() {
@@ -46,103 +86,21 @@ class CharacterSheet extends React.Component {
             </div>
             <div className="row">
               <div className="col gy-2">
-                <div className="card-group">
-                  <div className="card">
-                    <div className="card-header">
-                      Hit Points
-                    </div>
-                    <div className="card-body">
-                      <ul className="list-group list-group-horizontal">
-                        <li className="list-group-item flex-fill">Total</li>
-                        <li className="list-group-item flex-fill">Current</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="card">
-                    <div className="card-header">
-                      DR
-                    </div>
-                    <div className="card-body">
-                      <ul className="list-group list-group-horizontal">
-                        <li className="list-group-item flex-fill">Total</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="card">
-                    <div className="card-header">
-                      SR
-                    </div>
-                    <div className="card-body">
-                      <ul className="list-group list-group-horizontal">
-                        <li className="list-group-item flex-fill">Total</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                <h3 className='pb-2 border-bottom text-center'>Combat, Movement &amp; Hit Points</h3>
+                <HitPoints />
               </div>
             </div>
             <div className="row">
-              <div className="col gy-2">
-                <div className="card-group">
-                  <div className="card">
-                    <ul className="list-group list-group-flush">
-                      <li className="list-group-item">Initiative</li>
-                      <li className="list-group-item" id="initiative">Total</li>
-                      <li className="list-group-item">Force Points</li>
-                      <li className="list-group-item" id="force-points">FP Total</li>
-                    </ul>
-                  </div>
-                  <div className="card">
-                    <ul className="list-group list-group-flush">
-                      <li className="list-group-item">Base Attack</li>
-                      <li className="list-group-item" id="base-attack">Total</li>
-                      <li className="list-group-item">Speed</li>
-                      <li className="list-group-item" id="player-speed">FP Total</li>
-                    </ul>
-                  </div>
-                  <div className="card">
-                    <ul className="list-group list-group-flush">
-                      <li className="list-group-item">Perception</li>
-                      <li className="list-group-item" id="perception">Total</li>
-                      <li className="list-group-item">Destiny Points</li>
-                      <li className="list-group-item" id="destiny-points">FP Total</li>
-                    </ul>
-                  </div>
-                </div>
+              <div className="col">
+                <CombatLists combantInfo={this.state.combatInformation} />
+                <CombatLists combantInfo={this.state.attackInformation} />
               </div>
-            <div className="col-sm-5 gy-2">
-              <div className="card-group">
-                <div className="card">
-                  <div className="card-header">
-                    Dmg. Threshold
-                  </div>
-                  <div className="card-body">
-                    <ul className="list-group list-group-flush">
-                      <li className="list-group-item">Fort Defense</li>
-                    </ul>
-                  </div>
-                  <div className="card-footer">
-                    Misc Bonus
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-header" id="damage-threshold">
-                    Initiative
-                  </div>
-                  <div className="card-body">
-                    <ul className="list-group list-group-flush">
-                      <li className="list-group-item" id="fort-defense">Total</li>
-                    </ul>
-                  </div>
-                  <div className="card-footer" id="damage-misc-bonus">
-                    Force Points
-                  </div>
-                </div>
+              <div className="col-sm-5 gy-2">
+                <DamageThreshold />
               </div>
             </div>
           </div>
         </div>
-      </div>
       <div className="row">
         <div className="col">
           <div className="row">
@@ -154,19 +112,7 @@ class CharacterSheet extends React.Component {
         <div className="col">
           <div className="row">
             <div className="col gy-5">
-              <div className="card">
-                <div className="card-header">
-                  Second Wind
-                </div>
-                <div className="card-body">
-                  <ul className="list-group list-group-horizontal">
-                    <li className="list-group-item flex-fill">Uses/Day</li>
-                    <li className="list-group-item flex-fill">Total</li>
-                    <li className="list-group-item flex-fill">Bonus HP</li>
-                    <li className="list-group-item flex-fill">Str</li>
-                  </ul>
-                </div>
-              </div>
+              <SecondWind />
             </div>
             </div>
           </div>

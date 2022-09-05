@@ -13,28 +13,28 @@ class Abilities extends React.Component {
       },{
         id: 2,
         abilityName: "DEXterity",
-        abilityScore: "10",
-        abilityMod: "0"
+        abilityScore: "15",
+        abilityMod: "2"
       },{
         id: 3,
         abilityName: "CONstitution",
-        abilityScore: "10",
-        abilityMod: "0"
+        abilityScore: "14",
+        abilityMod: "2"
       },{
         id: 4,
         abilityName: "INTelligence",
-        abilityScore: "10",
-        abilityMod: "0"
+        abilityScore: "12",
+        abilityMod: "1"
       },{
         id: 5,
         abilityName: "WISdom",
-        abilityScore: "10",
-        abilityMod: "0"
+        abilityScore: "8",
+        abilityMod: "-1"
       },{
         id: 6,
         abilityName: "CHArisma",
-        abilityScore: "10",
-        abilityMod: "0"
+        abilityScore: "13",
+        abilityMod: "1"
       }
     ]};
   }
