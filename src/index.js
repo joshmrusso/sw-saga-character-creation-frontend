@@ -17,6 +17,7 @@ class Game extends React.Component {
         {id: 3, name: 'Grogu'}, 
         {id: 4, name: 'Darth Vader'}
       ],
+      activeCharacter: null,
       homePageInfoVisibility: true,
       characterListVisibility: true,
       characterSheetVisibility: false
@@ -27,7 +28,7 @@ class Game extends React.Component {
     this.setState({characterListVisibility: visibility});
     this.setState({homePageInfoVisibility: visibility});
     this.setState({characterSheetVisibility: !visibility});
-    console.log(character);
+    this.setState({activeCharacter: character});
   }
 
   homeClick = (visibility) => {
@@ -54,7 +55,7 @@ class Game extends React.Component {
         {this.state.characterListVisibility ? 
           <CharacterList characters={this.state.characters} onSelectCharacter={this.homeCharListClick} /> 
           : null }
-        {this.state.characterSheetVisibility ? <CharacterSheet /> : null}
+        {this.state.characterSheetVisibility ? <CharacterSheet character={this.state.activeCharacter} /> : null}
       </div>
     );
   }

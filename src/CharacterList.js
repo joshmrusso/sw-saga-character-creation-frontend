@@ -25,7 +25,7 @@ class CharacterList extends React.Component {
                         <h6 className="mb-0">{character.name}</h6>
                         <p className="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
                       </div>
-                      <small className="opacity-50 text-nowrap">now</small>
+                      <small className="opacity-50 text-end text-nowrap">now</small>
                     </div>
                   </a>
                 )}

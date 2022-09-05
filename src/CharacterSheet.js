@@ -1,15 +1,20 @@
 import React from 'react';
 import Abilities from './Abilities.js';
 import Condition from './Condition.js';
+import Defenses from './Defenses.js';
 
 class CharacterSheet extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className='container px-4 py-5'>
-        <h2 className='pb-2 border-bottom text-center'>Character Sheet</h2>
+        <h2 className='pb-2 border-bottom text-center'>Character Sheet ({this.props.character})</h2>
         <div className="row">
           <div className="input-group mb-3">
-            <input type="text" className="form-control" placeholder="Character Name" id="character-name" name="character-name" />
+            <input type="text" className="form-control" placeholder="Character Name" id="character-name" name="character-name" value={this.props.character} readOnly />
             <input type="text" className="form-control" placeholder="Player" id="player" name="player" />
           </div>
         </div>
@@ -142,42 +147,7 @@ class CharacterSheet extends React.Component {
         <div className="col">
           <div className="row">
             <div className="col gy-5">
-              <div className="card">
-                <div className="card-header">
-                  Defenses
-                </div>
-                <div className="card-body">
-                  <ul className="list-group list-group-horizontal">
-                    <li className="list-group-item flex-fill list-group-item-secondary">Reflex</li>
-                    <li className="list-group-item flex-fill">Total</li>
-                    <li className="list-group-item flex-fill">10</li>
-                    <li className="list-group-item flex-fill">Level</li>
-                    <li className="list-group-item flex-fill">className</li>
-                    <li className="list-group-item flex-fill" id="dex-saving-bonus">Ability</li>
-                    <li className="list-group-item flex-fill">Misc</li>
-                  </ul>
-                  <br />
-                  <ul className="list-group list-group-horizontal">
-                    <li className="list-group-item flex-fill list-group-item-secondary">Foritude</li>
-                    <li className="list-group-item flex-fill">Total</li>
-                    <li className="list-group-item flex-fill">10</li>
-                    <li className="list-group-item flex-fill">Level</li>
-                    <li className="list-group-item flex-fill">className</li>
-                    <li className="list-group-item flex-fill" id="con-saving-bonus">Ability</li>
-                    <li className="list-group-item flex-fill">Misc</li>
-                  </ul>
-                  <br />
-                  <ul className="list-group list-group-horizontal">
-                    <li className="list-group-item flex-fill list-group-item-secondary">Will</li>
-                    <li className="list-group-item flex-fill">Total</li>
-                    <li className="list-group-item flex-fill">10</li>
-                    <li className="list-group-item flex-fill">Level</li>
-                    <li className="list-group-item flex-fill">className</li>
-                    <li className="list-group-item flex-fill" id="wis-saving-bonus">Ability</li>
-                    <li className="list-group-item flex-fill">Misc</li>
-                  </ul>
-                </div>
-              </div>
+              <Defenses />
             </div>
           </div>
         </div>
