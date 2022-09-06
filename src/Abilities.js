@@ -8,32 +8,32 @@ class Abilities extends React.Component {
       abilities: [{
         id: 1,
         abilityName: "STRength",
-        abilityScore: "10",
+        abilityScore: this.props.abilities.str,
         abilityMod: "0"
       },{
         id: 2,
         abilityName: "DEXterity",
-        abilityScore: "15",
+        abilityScore: this.props.abilities.dex,
         abilityMod: "2"
       },{
         id: 3,
         abilityName: "CONstitution",
-        abilityScore: "14",
+        abilityScore: this.props.abilities.con,
         abilityMod: "2"
       },{
         id: 4,
         abilityName: "INTelligence",
-        abilityScore: "12",
+        abilityScore: this.props.abilities.int,
         abilityMod: "1"
       },{
         id: 5,
         abilityName: "WISdom",
-        abilityScore: "8",
+        abilityScore: this.props.abilities.wis,
         abilityMod: "-1"
       },{
         id: 6,
         abilityName: "CHArisma",
-        abilityScore: "13",
+        abilityScore: this.props.abilities.cha,
         abilityMod: "1"
       }
     ]};

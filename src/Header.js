@@ -30,7 +30,7 @@ class Header extends React.Component {
                   <a href="#" role={"button"} className="nav-link px-2 text-white dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Characters</a>
                   <ul className='dropdown-menu'>
                     {this.props.characters.map(character => 
-                      <li key={character._id}><a className='dropdown-item' href='#' onClick={() => { this.handleCharListVis(character['character-name']); }}>{character['character-name']}</a></li>
+                      <li key={character._id}><a className='dropdown-item' href='#' onClick={() => { this.handleCharListVis(character); }}>{character['character-name']}</a></li>
                     )}
                   </ul>
                 </li>

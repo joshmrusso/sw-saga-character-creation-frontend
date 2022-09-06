@@ -18,7 +18,7 @@ class CharacterList extends React.Component {
               <div className='col-lg-2 mx-auto'>
                 <div className="list-group w-auto">
                 {this.props.characters.map(character => 
-                  <a key={character._id} href="#" onClick={() => { this.handleCharListVis(character['character-name']); }} className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                  <a key={character._id} href="#" onClick={() => { this.handleCharListVis(character); }} className="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                     <img src='https://github.com/twbs.png' alt='twbs' width={"32"} height={"32"} className="rounded-circle flex-shrink-0" />
                     <div className="d-flex gap-2 w-100 justify-content-between">
                       <div>

@@ -32,7 +32,7 @@ class CharacterSheet extends React.Component {
         {
           id: 1,
           infoTitle: "Speed",
-          infoValue: 20
+          infoValue: this.props.character.speed
         },
         {
           id: 2,
@@ -49,19 +49,28 @@ class CharacterSheet extends React.Component {
   }
 
   render() {
+    const characterLevel = [this.props.character['class-level']];
+    let charLevel = "";
+    characterLevel.forEach((classData, i) => {
+      charLevel += classData.class['class-name'] + " " + classData.class['level'];
+      if (i > 0) {
+        charLevel += " / ";
+      }
+    }
+      );
     return (
       <div className='container px-4 py-5'>
-        <h2 className='pb-2 border-bottom text-center'>Character Sheet ({this.props.character})</h2>
+        <h2 className='pb-2 border-bottom text-center'>Character Sheet ({this.props.character['character-name']})</h2>
         <div className="row">
           <div className="input-group mb-3">
-            <input type="text" className="form-control" placeholder="Character Name" id="character-name" name="character-name" value={this.props.character} readOnly />
+            <input type="text" className="form-control" placeholder="Character Name" id="character-name" name="character-name" value={this.props.character['character-name']} readOnly />
             <input type="text" className="form-control" placeholder="Player" id="player" name="player" />
           </div>
         </div>
         <div className="row">
           <div className="input-group mb-3">
-            <input type="text" className="form-control" placeholder="Species" id="species" name="species" />
-            <input type="text" className="form-control" placeholder="Class" id="class-select" name="class" />
+            <input type="text" className="form-control" placeholder="Species" id="species" name="species" value={this.props.character.specie} readOnly />
+            <input type="text" className="form-control" placeholder="Class" id="class-select" name="class" value={charLevel} readOnly />
           </div>
         </div>
         <div className="row">
@@ -76,7 +85,7 @@ class CharacterSheet extends React.Component {
         </div>
         <div className='row'>
           <div className="col-sm-3 gy-2">
-            <Abilities />
+            <Abilities abilities={this.props.character.abilities} />
           </div>
           <div className="col gy-2">
             <div className="row">
