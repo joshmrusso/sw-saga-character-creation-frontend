@@ -45,7 +45,7 @@ class Game extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3001/search/characters/all")
+    fetch("http://localhost:3001/characters")
       .then((res) => res.json())
       .then((json) => {
         this.setState({
