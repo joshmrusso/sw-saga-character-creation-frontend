@@ -45,7 +45,7 @@ class CreateCharacterSheet extends React.Component {
           abilityMod: 0
         },
       ],
-      value: "",
+      value: "Character Name",
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -86,7 +86,7 @@ class CreateCharacterSheet extends React.Component {
               <CreateCharacterAbility inputValue={ability.abilityValue} inputName={ability.abilityName} inputMod={ability.abilityMod} inputId={ability.id} handleChange={this.handleInputChange} />
             </div>
             ) }
-          <input type={"submit"} value="Submit" />
+          <input className='btn btn-primary' type={"submit"} value="Submit" />
         </form>
       </div>
       </>

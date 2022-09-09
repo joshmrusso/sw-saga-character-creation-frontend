@@ -51,6 +51,7 @@ class CharacterSheet extends React.Component {
   render() {
     const characterLevel = [this.props.character['class-level']];
     let charLevel = "";
+    console.log(charLevel);
     characterLevel.forEach((classData, i) => {
       charLevel += classData.class['class-name'] + " " + classData.class['level'];
       if (i > 0) {
