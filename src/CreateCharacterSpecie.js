@@ -9,7 +9,7 @@ class CreateCharacterSpecie extends React.Component {
   }
 
   render() {
-    console.log(this.state.languages[0].basic);
+    // console.log(Object.keys(this.state.languages[0])[0]);
 
     return(
       <>
@@ -20,7 +20,15 @@ class CreateCharacterSpecie extends React.Component {
           <div className='card-body'>
             <p>{this.props.specie.size}</p>
             <p>{this.props.specie.speed}</p>
-            {/* {this.state.languages[0].map((lang) => console.log(lang))} */}
+            {this.state.languages.map((lang) => {
+              var langDisplay = "<ul>";
+              for (var i = 0; i < Object.keys(lang).length; i++) {
+                langDisplay += "<li>" + lang[Object.keys(lang)[i]].displayName + "</li>";
+              }
+              langDisplay += "</ul>";
+              return langDisplay;
+            }
+            )}
             {/* <p>{this.state.languages}</p> */}
             {/* {this.state.languages.map( (lang) => console.log(lang))} */}
             {/* <p>{this.props.specie.abilityAdj}</p> */}
