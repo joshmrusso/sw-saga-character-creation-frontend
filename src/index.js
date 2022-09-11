@@ -13,8 +13,7 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      characters: [
-      ],
+      characters: [],
       activeCharacter: null,
       homePageInfoVisibility: true,
       characterListVisibility: true,
@@ -31,7 +30,7 @@ class Game extends React.Component {
     this.setState({characterSheetVisibility: !visibility});
     this.state.createCharacterVisibility ? this.setState({createCharacterVisibility: false}) : void(0);
     this.setState({activeCharacter: character});
-    console.log(character._id);
+    // console.log(character._id);
   }
 
   homeClick = (visibility) => {
@@ -56,7 +55,6 @@ class Game extends React.Component {
           dataIsLoaded: true
         });
       });
-    
   }
 
   render() {

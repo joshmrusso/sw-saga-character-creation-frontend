@@ -1,5 +1,7 @@
 import React from 'react';
-import CreateCharacterAbility from './CreateCharacterAbility.js';
+import CreateCharacterAbilities from './CreateCharacterAbilities.js';
+import CreateCharacterSpecies from './CreateCharacterSpecies.js';
+import CreateCharacterClasses from './CreateCharacterClasses.js';
 
 class CreateCharacterSheet extends React.Component {
   constructor(props) {
@@ -45,7 +47,10 @@ class CreateCharacterSheet extends React.Component {
           abilityMod: 0
         },
       ],
-      value: "Character Name",
+      abilityVisibility: true,
+      specieVisibility: false,
+      classVisibility: false,
+      charName: "Character Name",
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -66,8 +71,22 @@ class CreateCharacterSheet extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    alert('A name was submitted: ');
     event.preventDefault();
+  }
+
+  creatorPageClick = (event, page) => {
+    event.preventDefault();
+    this.setState({abilityVisibility: false});
+    this.setState({specieVisibility: false});
+    this.setState({classVisibility: false});
+    if (page == "specie") {
+      this.setState({specieVisibility: true});
+    } else if (page == "class") {
+      this.setState({classVisibility: true});
+    } else if (page == "ability") {
+      this.setState({abilityVisibility: true});
+    }
   }
   
   render() {
@@ -81,12 +100,21 @@ class CreateCharacterSheet extends React.Component {
         </div>
       <div className='container px-4 py-5'>
         <form onSubmit={this.handleSubmit}>
-          {this.state.abilityInput.map( (ability) => 
-            <div className='row mb-3' key={ability.id}>
-              <CreateCharacterAbility inputValue={ability.abilityValue} inputName={ability.abilityName} inputMod={ability.abilityMod} inputId={ability.id} handleChange={this.handleInputChange} />
+          {this.state.abilityVisibility ? <CreateCharacterAbilities abilityInput={this.state.abilityInput} handleInputChange={this.handleInputChange} /> : null}
+          {this.state.specieVisibility ? <CreateCharacterSpecies /> : null}
+          {this.state.classVisibility ? <CreateCharacterClasses /> : null}
+          <div className='row px-4 py-3'>
+            <div className='col'>
+              <button className='btn btn-info' id='abilities' onClick={event => this.creatorPageClick(event, 'ability')}>Set Abilities</button>
             </div>
-            ) }
-          <input className='btn btn-primary' type={"submit"} value="Submit" />
+            <div className='col'>
+              <button className='btn btn-info' id='specie' onClick={event => this.creatorPageClick(event, 'specie')}>Choose Species</button>
+            </div>
+            <div className='col'>
+              <button className='btn btn-info' id='class' onClick={event => this.creatorPageClick(event, 'class')}>Choose Class</button>
+            </div>
+          </div>
+          <input className='btn btn-primary' type={"submit"} value="Create Character" />
         </form>
       </div>
       </>
