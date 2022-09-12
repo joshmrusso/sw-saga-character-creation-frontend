@@ -21,14 +21,29 @@ class CreateCharacterSpecie extends React.Component {
             <p>{this.props.specie.size}</p>
             <p>{this.props.specie.speed}</p>
             {this.state.languages.map((lang) => {
-              var langDisplay = "<ul>";
+              var langList = "";
+              var langArray = [];
+              var langExcept = [];
               for (var i = 0; i < Object.keys(lang).length; i++) {
-                langDisplay += "<li>" + lang[Object.keys(lang)[i]].displayName + "</li>";
+                // langArray.push(lang[Object.keys(lang)[i]].displayName);
+                if (lang[Object.keys(lang)[i]].exception) {
+                  langArray.push(lang[Object.keys(lang)[i]].displayName + " (" + lang[Object.keys(lang)[i]].exception + ")");
+                } else {
+                  langArray.push(lang[Object.keys(lang)[i]].displayName);
+                }
               }
-              langDisplay += "</ul>";
-              return langDisplay;
-            }
-            )}
+              // console.log(Object.keys(lang));
+              {langList = langArray.map((lan) => {
+                console.log(Object.keys(lan));
+                return(
+                  <li key={Object.keys(lan)}>{lan}</li>
+                );
+              })}
+              return(<ul>{langList}</ul>);
+              // console.log(langArray);
+              // return (langArray);
+              // return (langDisplay);
+            })}
             {/* <p>{this.state.languages}</p> */}
             {/* {this.state.languages.map( (lang) => console.log(lang))} */}
             {/* <p>{this.props.specie.abilityAdj}</p> */}
