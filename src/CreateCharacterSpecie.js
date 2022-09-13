@@ -4,7 +4,8 @@ class CreateCharacterSpecie extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      languages: [this.props.specie.language]
+      languages: [this.props.specie.language],
+      abilityAdjs: [this.props.specie.abilityAdj]
     }
   }
 
@@ -18,36 +19,41 @@ class CreateCharacterSpecie extends React.Component {
             <h5 className='text-center'>{this.props.specie.displayName}</h5>
           </div>
           <div className='card-body'>
-            <p>{this.props.specie.size}</p>
-            <p>{this.props.specie.speed}</p>
+            <p>Size: {this.props.specie.size.charAt(0).toUpperCase() + this.props.specie.size.slice(1)}
+            <br />
+            Speed: {this.props.specie.speed}</p>
             {this.state.languages.map((lang) => {
               var langList = "";
               var langArray = [];
-              var langExcept = [];
               for (var i = 0; i < Object.keys(lang).length; i++) {
-                // langArray.push(lang[Object.keys(lang)[i]].displayName);
                 if (lang[Object.keys(lang)[i]].exception) {
                   langArray.push(lang[Object.keys(lang)[i]].displayName + " (" + lang[Object.keys(lang)[i]].exception + ")");
                 } else {
                   langArray.push(lang[Object.keys(lang)[i]].displayName);
                 }
               }
-              // console.log(Object.keys(lang));
               {langList = langArray.map((lan) => {
-                console.log(Object.keys(lan));
                 return(
-                  <li key={Object.keys(lan)}>{lan}</li>
+                  <li key={this.props.specie._id + langArray.indexOf(lan)}>{lan}</li>
                 );
               })}
-              return(<ul>{langList}</ul>);
-              // console.log(langArray);
-              // return (langArray);
-              // return (langDisplay);
+              return(<ul key={this.props.specie._id}>{langList}</ul>);
             })}
-            {/* <p>{this.state.languages}</p> */}
-            {/* {this.state.languages.map( (lang) => console.log(lang))} */}
-            {/* <p>{this.props.specie.abilityAdj}</p> */}
-            {/* {console.log(this.state.languages)} */}
+            {this.state.abilityAdjs.map((ability) => {
+              if (ability) {
+                var abilityAdj = "(";
+                for (var i = 0; i < Object.keys(ability).length; i++) {
+                  abilityAdj += Object.keys(ability)[i].toUpperCase() + ": ";
+                  abilityAdj += ability[Object.keys(ability)[i]];
+                  if (i == Object.keys(ability).length - 1) {
+                    abilityAdj += ")"
+                  } else {
+                    abilityAdj += ", "
+                  }
+                }
+                return(<p key={this.props.specie._id}>{abilityAdj}</p>);
+              }
+            })}
           </div>
         </div>
       </>
