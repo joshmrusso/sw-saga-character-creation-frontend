@@ -23,9 +23,9 @@ class CreateCharacterSpecies extends React.Component {
 
   render() {
     return(
-      <>
+      <div className='row row-cols-1 row-cols-md-3 g-4'>
         {this.state.species.map( (specie) => <CreateCharacterSpecie key={specie._id} specie={specie} />)}
-      </>
+      </div>
     );
   }
 }

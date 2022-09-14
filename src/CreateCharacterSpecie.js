@@ -13,32 +13,37 @@ class CreateCharacterSpecie extends React.Component {
     // console.log(Object.keys(this.state.languages[0])[0]);
 
     return(
-      <>
+      <div className='col'>
         <div className='card'>
           <div className='card-header'>
             <h5 className='text-center'>{this.props.specie.displayName}</h5>
           </div>
           <div className='card-body'>
-            <p>Size: {this.props.specie.size.charAt(0).toUpperCase() + this.props.specie.size.slice(1)}
-            <br />
-            Speed: {this.props.specie.speed}</p>
-            {this.state.languages.map((lang) => {
-              var langList = "";
-              var langArray = [];
-              for (var i = 0; i < Object.keys(lang).length; i++) {
-                if (lang[Object.keys(lang)[i]].exception) {
-                  langArray.push(lang[Object.keys(lang)[i]].displayName + " (" + lang[Object.keys(lang)[i]].exception + ")");
-                } else {
-                  langArray.push(lang[Object.keys(lang)[i]].displayName);
+            <dl className='row'>
+              <dt className='col-sm-4'>Size:</dt>
+              <dd className='col-sm-8'>{this.props.specie.size.charAt(0).toUpperCase() + this.props.specie.size.slice(1)}</dd>
+              <dt className='col-sm-4'>Speed:</dt>
+              <dd className='col-sm-8'>{this.props.specie.speed}</dd>
+              <dt className='col-sm-4'>Languages:</dt>
+              {this.state.languages.map((lang) => {
+                var langList = "";
+                var langArray = [];
+                for (var i = 0; i < Object.keys(lang).length; i++) {
+                  if (lang[Object.keys(lang)[i]].exception) {
+                    langArray.push(lang[Object.keys(lang)[i]].displayName + " (" + lang[Object.keys(lang)[i]].exception + ")");
+                  } else {
+                    langArray.push(lang[Object.keys(lang)[i]].displayName);
+                  }
                 }
-              }
-              {langList = langArray.map((lan) => {
-                return(
-                  <li key={this.props.specie._id + langArray.indexOf(lan)}>{lan}</li>
-                );
+                {langList = langArray.map((lan) => {
+                  return(
+                    <span key={this.props.specie._id + langArray.indexOf(lan)}>{lan}<br /></span>
+                  );
+                })}
+                return(<dd className='col-sm-8' key={this.props.specie._id}><p>{langList}</p></dd>);
               })}
-              return(<ul key={this.props.specie._id}>{langList}</ul>);
-            })}
+            </dl>
+          </div>
             {this.state.abilityAdjs.map((ability) => {
               if (ability) {
                 var abilityAdj = "(";
@@ -51,12 +56,15 @@ class CreateCharacterSpecie extends React.Component {
                     abilityAdj += ", "
                   }
                 }
-                return(<p key={this.props.specie._id}>{abilityAdj}</p>);
+                return(
+                  <div key={this.props.specie._id} className="card-footer text-center">
+                    {abilityAdj}
+                  </div>
+                );
               }
             })}
-          </div>
         </div>
-      </>
+      </div>
     );
   }
 }
