@@ -12,13 +12,23 @@ class CreateCharacterSpecie extends React.Component {
   render() {
     // console.log(Object.keys(this.state.languages[0])[0]);
 
+    let specieCssClass = "";
+    let specieCssTextClass = "";
+    if (this.props.specieInput == this.props.specie.specieName) {
+      specieCssClass = "card border-success";
+      specieCssTextClass = "card-body text-success";
+    } else {
+      specieCssClass = "card";
+      specieCssTextClass = "card-body";
+    }
+
     return(
       <div className='col'>
-        <div className='card'>
+        <div className={specieCssClass} onClick={() => {this.props.updateSpecieChoice(this.props.specie.specieName)}}>
           <div className='card-header'>
             <h5 className='text-center'>{this.props.specie.displayName}</h5>
           </div>
-          <div className='card-body'>
+          <div className={specieCssTextClass}>
             <dl className='row'>
               <dt className='col-sm-4'>Size:</dt>
               <dd className='col-sm-8'>{this.props.specie.size.charAt(0).toUpperCase() + this.props.specie.size.slice(1)}</dd>

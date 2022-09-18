@@ -6,7 +6,8 @@ class CreateCharacterSpecies extends React.Component {
     super(props);
     this.state = {
       species: [],
-      dataIsLoaded: false
+      dataIsLoaded: false,
+      specieInput: ""
     }
   }
 
@@ -24,7 +25,8 @@ class CreateCharacterSpecies extends React.Component {
   render() {
     return(
       <div className='row row-cols-1 row-cols-md-3 g-4'>
-        {this.state.species.map( (specie) => <CreateCharacterSpecie key={specie._id} specie={specie} />)}
+        {this.state.species.map( (specie) => <CreateCharacterSpecie key={specie._id} specie={specie} specieInput={this.props.specieInput} updateSpecieChoice={this.props.updateSpecieChoice} />)}
+        <input type='hidden' id="specieChoice" name='specieChoice' value={this.props.specieInput} />
       </div>
     );
   }

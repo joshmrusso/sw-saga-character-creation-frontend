@@ -24,7 +24,8 @@ class CreateCharacterClasses extends React.Component {
   render() {
     return(
       <div className='row row-cols-1 row-cols-md-2 g-4'>
-        {this.state.classes.map( (clas) => <CreateCharacterClass key={clas._id} clas={clas} />)}
+        {this.state.classes.map( (clas) => <CreateCharacterClass key={clas._id} clas={clas} classInput={this.props.classInput} updateClassChoice={this.props.updateClassChoice} />)}
+        <input type='hidden' id="classChoice" name='classChoice' value={this.props.classInput} />
       </div>
     );
   }

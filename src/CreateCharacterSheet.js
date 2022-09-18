@@ -47,6 +47,8 @@ class CreateCharacterSheet extends React.Component {
           abilityMod: 0
         },
       ],
+      classInput: "",
+      specieInput: "",
       abilityVisibility: true,
       specieVisibility: false,
       classVisibility: false,
@@ -54,6 +56,8 @@ class CreateCharacterSheet extends React.Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.updateSpecieChoice = this.updateSpecieChoice.bind(this);
+    this.updateClassChoice = this.updateClassChoice.bind(this);
   }
 
   handleInputChange(event) {
@@ -88,6 +92,18 @@ class CreateCharacterSheet extends React.Component {
       this.setState({abilityVisibility: true});
     }
   }
+
+  updateClassChoice(classChoice) {
+    this.setState({
+      classInput: classChoice
+    });
+  }
+  
+  updateSpecieChoice(specieChoice) {
+    this.setState({
+      specieInput: specieChoice
+    });
+  }
   
   render() {
     return (
@@ -101,8 +117,8 @@ class CreateCharacterSheet extends React.Component {
       <div className='container px-4 py-5'>
         <form onSubmit={this.handleSubmit}>
           {this.state.abilityVisibility ? <CreateCharacterAbilities abilityInput={this.state.abilityInput} handleInputChange={this.handleInputChange} /> : null}
-          {this.state.specieVisibility ? <CreateCharacterSpecies /> : null}
-          {this.state.classVisibility ? <CreateCharacterClasses /> : null}
+          {this.state.specieVisibility ? <CreateCharacterSpecies specieInput={this.state.specieInput} updateSpecieChoice={this.updateSpecieChoice} /> : null}
+          {this.state.classVisibility ? <CreateCharacterClasses classInput={this.state.classInput} updateClassChoice={this.updateClassChoice} /> : null}
           <div className='row px-4 py-3'>
             <div className='col'>
               <button className='btn btn-info' id='abilities' onClick={event => this.creatorPageClick(event, 'ability')}>Set Abilities</button>
