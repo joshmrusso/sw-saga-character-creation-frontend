@@ -65,6 +65,7 @@ class CreateCharacterSheet extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.updateSpecieChoice = this.updateSpecieChoice.bind(this);
     this.updateClassChoice = this.updateClassChoice.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
@@ -82,8 +83,13 @@ class CreateCharacterSheet extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ');
     event.preventDefault();
+    if (this.state.specieInput == "") {
+      console.log("Please choose a specie");
+    } else if (this.state.classInput == "") {
+      console.log("Please choose a class");
+    }
+    alert('A name was submitted: ');
   }
 
   creatorPageClick = (event, page) => {
@@ -134,32 +140,43 @@ class CreateCharacterSheet extends React.Component {
   render() {
     return (
       <>
-      <div className="px-4 py-5 my-5 text-center">
-          <h1 className='display-5 fw-bold'>Character Creator: Abilities</h1>
+        <div className="px-4 py-4 text-center bg-light">
+          <h1 className='display-5 fw-bold'>
+            Character Creator: 
+            {this.state.abilityVisibility ? " Abilities" : null}
+            {this.state.specieVisibility ? " Species" : null}
+            {this.state.classVisibility ? " Classes" : null}
+          </h1>
           <div className='col-lg-6 mx-auto'>
-            <p className='lead mb-4'>Please adjust the sliders for the correct ability levels.</p>
+            <p className='lead mb-2'>
+              {this.state.abilityVisibility ? "Please adjust the sliders for the correct ability levels." : null}
+              {this.state.specieVisibility ? "Please choose a species." : null}
+              {this.state.classVisibility ? "Please choose a class." : null}
+            </p>
           </div>
         </div>
-          <CreateCharacterTracker abilityInput={this.state.abilityInput} classInput={this.state.classInput} specieInput={this.state.specieInput} />
-      <div className='container px-4 py-5'>
-        <form onSubmit={this.handleSubmit}>
-          {this.state.abilityVisibility ? <CreateCharacterAbilities abilityInput={this.state.abilityInput} handleInputChange={this.handleInputChange} /> : null}
-          {this.state.specieVisibility ? <CreateCharacterSpecies specieInput={this.state.specieInput} updateSpecieChoice={this.updateSpecieChoice} /> : null}
-          {this.state.classVisibility ? <CreateCharacterClasses classInput={this.state.classInput} updateClassChoice={this.updateClassChoice} /> : null}
-          <div className='row px-4 py-3'>
-            <div className='col'>
+        <div className='container px-4 py-2'>
+            <CreateCharacterTracker abilityInput={this.state.abilityInput} classInput={this.state.classInput} specieInput={this.state.specieInput} />
+          <div className='row px-4 py-2'>
+            <div className='col text-center'>
               <button className='btn btn-info' id='abilities' onClick={event => this.creatorPageClick(event, 'ability')}>Set Abilities</button>
             </div>
-            <div className='col'>
+            <div className='col text-center'>
               <button className='btn btn-info' id='specie' onClick={event => this.creatorPageClick(event, 'specie')}>Choose Species</button>
             </div>
-            <div className='col'>
+            <div className='col text-center'>
               <button className='btn btn-info' id='class' onClick={event => this.creatorPageClick(event, 'class')}>Choose Class</button>
             </div>
           </div>
-          <input className='btn btn-primary' type={"submit"} value="Create Character" />
-        </form>
-      </div>
+        </div>
+        <div className='container px-4 py-5'>
+          <form onSubmit={this.handleSubmit}>
+            {this.state.abilityVisibility ? <CreateCharacterAbilities abilityInput={this.state.abilityInput} handleInputChange={this.handleInputChange} /> : null}
+            {this.state.specieVisibility ? <CreateCharacterSpecies specieInput={this.state.specieInput} updateSpecieChoice={this.updateSpecieChoice} /> : null}
+            {this.state.classVisibility ? <CreateCharacterClasses classInput={this.state.classInput} updateClassChoice={this.updateClassChoice} /> : null}
+            <input className='btn btn-primary' type={"submit"} value="Create Character" />
+          </form>
+        </div>
       </>
     );
   }

@@ -53,12 +53,13 @@ class CharacterSheet extends React.Component {
     let charLevel = "";
     console.log(charLevel);
     characterLevel.forEach((classData, i) => {
-      charLevel += classData.class['class-name'] + " " + classData.class['level'];
+      charLevel += classData.class['class-name'].charAt(0).toUpperCase() + classData.class['class-name'].slice(1) + " " + classData.class['level'];
       if (i > 0) {
         charLevel += " / ";
       }
-    }
-      );
+    });
+
+    console.log(this.props.character);
     return (
       <div className='container px-4 py-5'>
         <h2 className='pb-2 border-bottom text-center'>Character Sheet ({this.props.character['character-name']})</h2>
@@ -70,7 +71,7 @@ class CharacterSheet extends React.Component {
         </div>
         <div className="row">
           <div className="input-group mb-3">
-            <input type="text" className="form-control" placeholder="Species" id="species" name="species" value={this.props.character.specie} readOnly />
+            <input type="text" className="form-control" placeholder="Species" id="species" name="species" value={this.props.character.specie.charAt(0).toUpperCase() + this.props.character.specie.slice(1)} readOnly />
             <input type="text" className="form-control" placeholder="Class" id="class-select" name="class" value={charLevel} readOnly />
           </div>
         </div>
