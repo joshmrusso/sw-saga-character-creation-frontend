@@ -24,7 +24,7 @@ class CreateCharacterSpecie extends React.Component {
 
     return(
       <div className='col'>
-        <div className={specieCssClass} onClick={() => {this.props.updateSpecieChoice(this.props.specie.specieName)}}>
+        <div className={specieCssClass} onClick={() => {this.props.updateSpecieChoice(this.props.specie.specieName, this.state.abilityAdjs)}}>
           <div className='card-header'>
             <h5 className='text-center'>{this.props.specie.displayName}</h5>
           </div>

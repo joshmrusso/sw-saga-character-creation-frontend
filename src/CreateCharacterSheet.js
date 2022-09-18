@@ -2,6 +2,7 @@ import React from 'react';
 import CreateCharacterAbilities from './CreateCharacterAbilities.js';
 import CreateCharacterSpecies from './CreateCharacterSpecies.js';
 import CreateCharacterClasses from './CreateCharacterClasses.js';
+import CreateCharacterTracker from './CreateCharacterTracker.js';
 
 class CreateCharacterSheet extends React.Component {
   constructor(props) {
@@ -14,37 +15,43 @@ class CreateCharacterSheet extends React.Component {
           id: 0,
           abilityName: "STRength",
           abilityValue: 0,
-          abilityMod: 0
+          abilityMod: 0,
+          specieMod: 0
         },
         {
           id: 1,
           abilityName: "DEXterity",
           abilityValue: 0,
-          abilityMod: 0
+          abilityMod: 0,
+          specieMod: 0
         },
         {
           id: 2,
           abilityName: "CONstitution",
           abilityValue: 0,
-          abilityMod: 0
+          abilityMod: 0,
+          specieMod: 0
         },
         {
           id: 3,
           abilityName: "INTelligence",
           abilityValue: 0,
-          abilityMod: 0
+          abilityMod: 0,
+          specieMod: 0
         },
         {
           id: 4,
           abilityName: "WISdom",
           abilityValue: 0,
-          abilityMod: 0
+          abilityMod: 0,
+          specieMod: 0
         },
         {
           id: 5,
           abilityName: "CHArisma",
           abilityValue: 0,
-          abilityMod: 0
+          abilityMod: 0,
+          specieMod: 0
         },
       ],
       classInput: "",
@@ -99,10 +106,29 @@ class CreateCharacterSheet extends React.Component {
     });
   }
   
-  updateSpecieChoice(specieChoice) {
-    this.setState({
-      specieInput: specieChoice
+  updateSpecieChoice(specieChoice, specieMod) {
+    // console.log(specieMod);
+    let abIn = this.state.abilityInput;
+    for (var i = 0; i < abIn.length; i++) {
+      abIn[i].specieMod = 0;
+    }
+    specieMod.map((ability) => {
+      if (ability) {
+        for (var i = 0; i < Object.keys(ability).length; i++) {
+          let abilityAdj = Object.keys(ability)[i].toUpperCase();
+          for (var j = 0; j < this.state.abilityInput.length; j++) {
+            if (abilityAdj == this.state.abilityInput[j].abilityName.substring(0, 3))  {
+              abIn[j].specieMod = ability[Object.keys(ability)[i]];
+            }
+          }
+        }
+      }
     });
+    this.setState({
+      specieInput: specieChoice,
+      abilityInput: abIn
+    });
+    // console.log(this.state.abilityInput);
   }
   
   render() {
@@ -114,6 +140,7 @@ class CreateCharacterSheet extends React.Component {
             <p className='lead mb-4'>Please adjust the sliders for the correct ability levels.</p>
           </div>
         </div>
+          <CreateCharacterTracker abilityInput={this.state.abilityInput} classInput={this.state.classInput} specieInput={this.state.specieInput} />
       <div className='container px-4 py-5'>
         <form onSubmit={this.handleSubmit}>
           {this.state.abilityVisibility ? <CreateCharacterAbilities abilityInput={this.state.abilityInput} handleInputChange={this.handleInputChange} /> : null}
