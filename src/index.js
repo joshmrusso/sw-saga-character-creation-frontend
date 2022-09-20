@@ -14,22 +14,32 @@ class Game extends React.Component {
     super(props);
     this.state = {
       characters: [],
-      activeCharacter: null,
+      activeCharacter: [],
       homePageInfoVisibility: true,
       characterListVisibility: true,
       characterSheetVisibility: false,
       createCharacterVisibility: false,
       dataIsLoaded: false,
-      currentCharacter: []
+      currentCharacter: [],
+      recentCharacters: []
     };
+    this.homeCharListClick = this.homeCharListClick.bind(this);
   }
 
   homeCharListClick = (visibility, character) => {
     this.setState({characterListVisibility: visibility});
     this.setState({homePageInfoVisibility: visibility});
-    this.setState({characterSheetVisibility: !visibility});
     this.state.createCharacterVisibility ? this.setState({createCharacterVisibility: false}) : void(0);
-    this.setState({activeCharacter: character});
+    // this.setState({activeCharacter: character});
+    fetch("http://localhost:3001/characters/" + character)
+    .then((res) => res.json())
+    .then((json) => {
+      // console.log(json);
+      this.setState({
+        activeCharacter: json,
+        dataIsLoaded: true
+      }, () => {this.setState({characterSheetVisibility: !visibility});});
+    });
     // console.log(character._id);
   }
 
@@ -55,6 +65,14 @@ class Game extends React.Component {
           dataIsLoaded: true
         });
       });
+      fetch("http://localhost:3001/characters/all/4")
+        .then((res) => res.json())
+        .then((json) => {
+          this.setState({
+            recentCharacters: json,
+            dataIsLoaded: true
+          });
+        });
   }
 
   render() {
@@ -62,8 +80,8 @@ class Game extends React.Component {
       <div>
         <Header characters={this.state.characters} onSelectCharacter={this.homeCharListClick} onSelectHome={this.homeClick} />
         {this.state.homePageInfoVisibility ? <CreatorButtons onSelectCreate={this.createClick} /> : null}
-        {this.state.characterListVisibility ? <CharacterList characters={this.state.characters} onSelectCharacter={this.homeCharListClick} /> : null}
-        {this.state.characterSheetVisibility ? <CharacterSheet character={this.state.activeCharacter} /> : null}
+        {this.state.characterListVisibility ? <CharacterList characters={this.state.recentCharacters} onSelectCharacter={this.homeCharListClick} /> : null}
+        {this.state.characterSheetVisibility ? <CharacterSheet character={this.state.activeCharacter[0]} /> : null}
         {this.state.createCharacterVisibility ? <CreateCharacterSheet /> : null}
       </div>
     );

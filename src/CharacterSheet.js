@@ -51,7 +51,7 @@ class CharacterSheet extends React.Component {
   render() {
     const characterLevel = [this.props.character['class-level']];
     let charLevel = "";
-    console.log(charLevel);
+    // console.log(characterLevel);
     characterLevel.forEach((classData, i) => {
       charLevel += classData.class['class-name'].charAt(0).toUpperCase() + classData.class['class-name'].slice(1) + " " + classData.class['level'];
       if (i > 0) {
@@ -59,7 +59,7 @@ class CharacterSheet extends React.Component {
       }
     });
 
-    console.log(this.props.character);
+    // console.log(this.props.character);
     return (
       <div className='container px-4 py-5'>
         <h2 className='pb-2 border-bottom text-center'>Character Sheet ({this.props.character['character-name']})</h2>
@@ -116,7 +116,7 @@ class CharacterSheet extends React.Component {
         <div className="col">
           <div className="row">
             <div className="col gy-5">
-              <Defenses />
+              <Defenses dex={this.props.character.abilities.dex} con={this.props.character.abilities.con} wis={this.props.character.abilities.wis} />
             </div>
           </div>
         </div>
