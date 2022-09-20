@@ -19,7 +19,7 @@ class Defenses extends React.Component {
                 <li className='list-group-item border-0'>=</li>
                 <li className='list-group-item list-group-item-action border-0'>10<span className='badge bg-secondary position-absolute top-100 start-50 translate-middle rounded-pill opacity-75'>base</span></li>
                 <li className='list-group-item border-0'>+</li>
-                <li className='list-group-item list-group-item-action border-0'>10<span className='badge bg-secondary position-absolute top-100 start-50 translate-middle rounded-pill opacity-75'>level</span></li>
+                <li className='list-group-item list-group-item-action border-0'>{this.props.herLvl}<span className='badge bg-secondary position-absolute top-100 start-50 translate-middle rounded-pill opacity-75'>level</span></li>
                 <li className='list-group-item border-0'>+</li>
                 <li className='list-group-item list-group-item-action border-0'>10<span className='badge bg-secondary position-absolute top-100 start-50 translate-middle rounded-pill opacity-75'>class</span></li>
                 <li className='list-group-item border-0'>+</li>
@@ -36,7 +36,7 @@ class Defenses extends React.Component {
                 <li className='list-group-item border-0'>=</li>
                 <li className='list-group-item list-group-item-action border-0'>10<span className='badge bg-secondary position-absolute top-100 start-50 translate-middle rounded-pill opacity-75'>base</span></li>
                 <li className='list-group-item border-0'>+</li>
-                <li className='list-group-item list-group-item-action border-0'>10<span className='badge bg-secondary position-absolute top-100 start-50 translate-middle rounded-pill opacity-75'>level</span></li>
+                <li className='list-group-item list-group-item-action border-0'>{this.props.herLvl}<span className='badge bg-secondary position-absolute top-100 start-50 translate-middle rounded-pill opacity-75'>level</span></li>
                 <li className='list-group-item border-0'>+</li>
                 <li className='list-group-item list-group-item-action border-0'>10<span className='badge bg-secondary position-absolute top-100 start-50 translate-middle rounded-pill opacity-75'>class</span></li>
                 <li className='list-group-item border-0'>+</li>
@@ -53,7 +53,7 @@ class Defenses extends React.Component {
                 <li className='list-group-item border-0'>=</li>
                 <li className='list-group-item list-group-item-action border-0'>10<span className='badge bg-secondary position-absolute top-100 start-50 translate-middle rounded-pill opacity-75'>base</span></li>
                 <li className='list-group-item border-0'>+</li>
-                <li className='list-group-item list-group-item-action border-0'>10<span className='badge bg-secondary position-absolute top-100 start-50 translate-middle rounded-pill opacity-75'>level</span></li>
+                <li className='list-group-item list-group-item-action border-0'>{this.props.herLvl}<span className='badge bg-secondary position-absolute top-100 start-50 translate-middle rounded-pill opacity-75'>level</span></li>
                 <li className='list-group-item border-0'>+</li>
                 <li className='list-group-item list-group-item-action border-0'>10<span className='badge bg-secondary position-absolute top-100 start-50 translate-middle rounded-pill opacity-75'>class</span></li>
                 <li className='list-group-item border-0'>+</li>
