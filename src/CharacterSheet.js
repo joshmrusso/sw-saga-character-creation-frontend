@@ -68,7 +68,7 @@ class CharacterSheet extends React.Component {
         <div className="row">
           <div className="input-group mb-3">
             <input type="text" className="form-control" placeholder="Character Name" id="character-name" name="character-name" value={this.props.character['character-name']} readOnly />
-            <input type="text" className="form-control" placeholder="Player" id="player" name="player" />
+            <input type="text" className="form-control" placeholder="Player" id="player" name="player" value={this.props.character['player-name']} readyOnly />
           </div>
         </div>
         <div className="row">
@@ -79,10 +79,10 @@ class CharacterSheet extends React.Component {
         </div>
         <div className="row">
           <div className="input-group mb-3">
-            <input type="text" className="form-control" placeholder="Age" id="age" />
-            <input type="text" className="form-control" placeholder="Gender" id="gender" />
-            <input type="text" className="form-control" placeholder="Height" id="height" />
-            <input type="text" className="form-control" placeholder="Weight" id="weight" />
+            <input type="text" className="form-control" placeholder="Age" id="age" value={this.props.character.age} readOnly />
+            <input type="text" className="form-control" placeholder="Gender" id="gender" value={this.props.character.gender} readOnly />
+            <input type="text" className="form-control" placeholder="Height" id="height" value={this.props.character.height} readOnly />
+            <input type="text" className="form-control" placeholder="Weight" id="weight" value={this.props.character.weight} readOnly />
             <input type="text" className="form-control" placeholder="Destiny" id="destiny" />
             <input type="text" className="form-control" placeholder="Ecl" id="ecl" />
           </div>
@@ -100,7 +100,7 @@ class CharacterSheet extends React.Component {
             <div className="row">
               <div className="col gy-2">
                 <h3 className='pb-2 border-bottom text-center'>Combat, Movement &amp; Hit Points</h3>
-                <HitPoints />
+                <HitPoints hp={this.props.character.hp} sr={this.props.character.sr} dr={this.props.character.dr} />
               </div>
             </div>
             <div className="row">
